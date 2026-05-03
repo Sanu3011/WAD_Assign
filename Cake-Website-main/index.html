@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>CakeCraft</title>
+
+    <!-- jQuery Mobile -->
+    <link rel="stylesheet" href="./jquery.mobile-1.4.5.min.css">
+    <script src="./jquery-1.11.1.min.js"></script>
+    <script src="./jquery.mobile-1.4.5.min.js"></script>
+
+    <style>
+        .hero {
+            height: 100vh;
+            background: url('images/bg_1.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .footer_content {
+            text-align: center;
+        }
+
+        .list-box {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div data-role="page">
+
+    <!-- HEADER -->
+    <div data-role="header">
+        <h1>CakeCraft</h1>
+
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#" class="ui-btn-active">Home</a></li>
+                <li><a href="#order">Order</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <div role="main" class="ui-content" style="padding:0;">
+
+        <!-- HERO -->
+        <div class="hero">
+            <h1>CakeCraft Special Cakes</h1>
+        </div>
+
+        <!-- ORDER -->
+        <div style="padding:15px;">
+            <h2 id="order">Order Your Cake</h2>
+
+            <form>
+
+                <label>Name:</label>
+                <input type="text">
+
+                <label>Email:</label>
+                <input type="email">
+
+                <label>Address:</label>
+                <input type="text">
+
+                <label>Phone:</label>
+                <input type="text">
+
+                <label>Select Date:</label>
+                <input type = "text" data-role = "date">
+
+
+                <label>Select Time:</label>
+                <input type="time">
+
+                <!-- Cake Type -->
+                <label>Cake Type:</label>
+                <input type="text" id="cakeType" placeholder="Select Cake Type" readonly>
+                <ul data-role="listview" data-inset="true" id="cakeList">
+                  <li>Black Forest</li>
+                  <li>Red Velvet</li>
+                   <li>Chocolate</li>
+                </ul>
+
+                <label>Weight:</label>
+           <input type="text" id="cakeWeight" placeholder="Select Weight" readonly>
+
+            <ul data-role="listview" data-inset="true" id="weightList">
+               <li>0.5 Kg</li>
+               <li>1 Kg</li>
+                <li>2 Kg</li>
+            </ul>
+
+                <button type="submit" class="ui-btn ui-btn-b">Order Now</button>
+
+            </form>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div data-role="footer" class="footer_content">
+        <h4>CakeCraft</h4>
+        <p>Email: cakecraft@gmail.com</p>
+        <p>Phone: 8796454321</p>
+    </div>
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+$(document).on("click", "a[href='#order']", function (e) {
+    e.preventDefault();
+    $("html, body").animate({
+        scrollTop: $("#order").offset().top
+    }, 800);
+});
+
+$(document).on("click", "#cakeList li", function () {
+    $("#cakeType").val($(this).text());
+});
+
+$(document).on("click", "#weightList li", function () {
+    $("#cakeWeight").val($(this).text());
+});
+
+
+
+</script>
+
+</body>
+</html>

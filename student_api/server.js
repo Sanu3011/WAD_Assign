@@ -1,0 +1,59 @@
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+require("dotenv").config();
+
+const Student = require("./models/student");
+const app = express();
+
+app.use(bodyParser.json());
+
+//MongoDB Connect
+
+mongoose.connect(process.env.MONGODB_URI)
+.then(()=> console.log("MongoDB Connected"))
+.catch((err)=> console.log("Mongo Error : ",err));
+
+//Get all Students
+app.get("/students", async (req,res) => {
+    const students = await Student.find();
+    res.send(students);
+});
+
+//Get student by name
+app.get("/students/:name", async (req,res) => {
+    const { name } = req.params;
+    const students = await Student.find({ name });
+    res.send(students);
+});
+
+//Add student
+app.post("/add-student", async (req,res) => {
+    const { name, marks, address } = req.body;
+    const newStudent = new Student({ name, marks, address });
+    await newStudent.save();
+    res.send("Student added");
+});
+
+
+//Delete student
+app.delete("/delete-student/:name", async (req,res) => {
+    const { name } = req.params;
+    await Student.findOneAndDelete({ name });
+    res.send("Student deleted");
+});
+
+//Update student
+app.put("/update", async (req,res) => {
+    const { name, marks, address } = req.body;
+    const updated = await Student.findOneAndUpdate(
+        { name },
+        { $set: { marks, address } },
+        { new: true }
+    );
+    res.send(updated);
+});
+
+app.listen(process.env.PORT, () => {
+    console.log(`Server is running on port  ${process.env.PORT}`);
+});
