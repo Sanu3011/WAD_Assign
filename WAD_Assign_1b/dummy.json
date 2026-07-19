@@ -1,0 +1,21 @@
+{
+  "users": [
+    {
+      "name": "Sanket Basare",
+      "username": "sanket",
+      "email": "sanketbasare899@gmail.com",
+      "phone": "8965453210",
+      "city": "pune",
+      "id": "VmXJowlpQyc"
+    },
+    {
+      "name": "Sanika Basare",
+      "username": "sanika",
+      "email": "sanikabasare0134@gmail.com",
+      "phone": "8965453218",
+      "city": "pune",
+      "id": "gmpB_Rjo8sc"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
